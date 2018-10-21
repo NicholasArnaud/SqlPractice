@@ -1,0 +1,46 @@
+DROP TABLE student;
+CREATE TABLE student(
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(20) NOT NULL,
+    major VARCHAR(20) 
+);
+ALTER TABLE student ADD gpa DECIMAL(3,2) DEFAULT 0.0;
+ALTER TABLE student DROP COLUMN gpa;
+DESCRIBE student;
+
+INSERT INTO student VALUES (1,"Jack","Biology",3.7);
+INSERT INTO student (name, major, gpa) VALUES ("Kate","Sociology",4.0);
+INSERT INTO student(student_id, name) VALUES (3,"Claire");
+INSERT INTO student VALUES (4, "Jack", "Biology",3.4);
+INSERT INTO student VALUES (5, "Mike", "Computer Science", 3.9);
+
+UPDATE student
+SET major = 'Bio'
+WHERE major = 'Biology';
+
+UPDATE student
+SET major = 'Comp Sci'
+WHERE student_id = 5;
+
+UPDATE student
+SET major = 'Biochemistry'
+WHERE major = 'Bio' OR major = 'Chemistry';
+
+DELETE FROM student
+WHERE major IS NULL;
+
+SELECT * FROM student;
+
+SELECT student_id FROM student;
+SELECT student.name FROM student;
+SELECT name, major FROM student;
+
+SELECT name FROM student ORDER BY name ASC;
+SELECT * FROM student ORDER BY major DESC;
+SELECT * FROM student ORDER BY gpa DESC LIMIT 2;
+
+SELECT * FROM student WHERE major = "Biochemistry";
+SELECT * FROM student WHERE name IN ('Claire', 'Kate', 'Mike');
+
+-- This is a comment
+-- <, >, <=, >=, <>, AND, OR
